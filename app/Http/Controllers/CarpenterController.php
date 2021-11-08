@@ -3,19 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Carpenter;
+use App\Http\Requests\CarpenterRequest;
 
 class CarpenterController extends Controller
 {
     //
     public function index(){
-        return view('carpenters');
+        $carpenters = Carpenter::all();
+        return view('carpenters')->with(['carpenters' => $carpenters]);;
     }
 
-    public function show(){
-        return view('carpenter');
+    public function show(Carpenter $carpenter){
+        return view('carpenter')->with(['carpenter' => $carpenter]);
     }
 
     public function new(){
         return view('newcarpenter');
+    }
+
+    public function create(CarpenterRequest $request){
+        $carpenter = new Carpenter();
+        $carpenter->name = $request->name;
+        $carpenter->profile = $request->profile;
+        $image_path = $request->file('img')->store('public/');
+        $carpenter->img = basename($image_path);
+        $carpenter->role = $request->role;
+        $carpenter->save();
+        return redirect('/carpenters');
+    }
+
+    public function update(CarpenterRequest $request, Carpenter $carpenter){
+        $carpenter->name = $request->name;
+        $carpenter->profile = $request->profile;
+        if($request->img != null){
+            $image_path = $request->file('img')->store('public/');
+            $carpenter->img = basename($image_path);
+        }
+        $carpenter->role = $request->role;
+        $carpenter->save();
+        return redirect('/carpenters');
+    }
+
+    public function destroy(Carpenter $carpenter){
+        $carpenter->delete();
+        return redirect('/carpenters');
     }
 }

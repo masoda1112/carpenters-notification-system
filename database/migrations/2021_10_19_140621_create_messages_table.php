@@ -18,8 +18,8 @@ class CreateMessagesTable extends Migration
             $table->date('date');
             $table->boolean('status');
             $table->integer('client_id');
-            $table->integer('carpenter_id');
-            $table->integer('message_id');
+            $table->json('carpenters_id');
+            $table->string('message');
             $table->timestamps();
         });
     }

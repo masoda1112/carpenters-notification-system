@@ -14,16 +14,11 @@ class Message extends Model
 
     public function client()
     {
-        return $this->hasOne(Client::class);
+        return $this->belongsTo(Client::class);
     }
 
-    public function sentence()
+    public function carpenters()
     {
-        return $this->hasOne(Sentence::class);
-    }
-
-    public function carpenter()
-    {
-        return $this->hasMany(Carpenter::class);
+        return $this->belongsToMany(Carpenter::class,'message_carpenter','message_id','carpenter_id');
     }
 }

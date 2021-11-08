@@ -10,8 +10,8 @@ class Carpenter extends Model
 {
     use HasFactory;
 
-    public function message()
+    public function messages()
     {
-        return $this->belongsTo(Message::class);
+        return $this->belongsToMany(Message::class,'message_carpenter','carpenter_id','message_id');
     }
 }

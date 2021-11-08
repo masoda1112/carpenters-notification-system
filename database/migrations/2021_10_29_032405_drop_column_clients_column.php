@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSentencesTable extends Migration
+class DropColumnClientsColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSentencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sentences', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('body');
-            $table->timestamps();
+        Schema::table('clients', function (Blueprint $table) {
+            //
+            $table->dropColumn('messages');
         });
     }
 
@@ -28,6 +26,9 @@ class CreateSentencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sentences');
+        Schema::table('clients', function (Blueprint $table) {
+            //
+            $table->json('messages')->default(false);
+        });
     }
 }

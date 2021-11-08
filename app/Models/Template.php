@@ -4,13 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Message;
 
-class Sentence extends Model
+class Template extends Model
 {
     use HasFactory;
-    public function message()
-    {
-        return $this->hasOne(Message::class);
-    }
 }

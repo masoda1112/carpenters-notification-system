@@ -19,7 +19,6 @@ class CreateCarpentersTable extends Migration
             $table->string('gender');
             $table->date('birthday');
             $table->text('profile');
-            // ここだけもし複数の写真を登録するなら、jsonだし単体ならstringにする
             $table->string('img');
             $table->timestamps();
         });

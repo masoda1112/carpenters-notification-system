@@ -9,8 +9,8 @@ use App\Models\Message;
 class Client extends Model
 {
     use HasFactory;
-    public function message()
+    public function messages()
     {
-        return $this->hasOne(Message::class);
+        return $this->hasMany(Message::class);
     }
 }
