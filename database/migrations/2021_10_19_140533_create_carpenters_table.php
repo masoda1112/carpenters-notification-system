@@ -16,11 +16,17 @@ class CreateCarpentersTable extends Migration
         Schema::create('carpenters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('gender');
-            $table->date('birthday');
             $table->text('profile');
             $table->string('img');
+            $table->string('role');
+            $table->unsignedBigInteger('message_id')->nullable();
             $table->timestamps();
+            
+            $table
+            ->foreign('message_id')
+            ->references('id')
+            ->on('messages')
+            ->onDelete('cascade');
         });
     }
 

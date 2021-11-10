@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToMessagesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddColumnToMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            //
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->boolean('status');
+            $table->string('message');
             $table->unsignedBigInteger('client_id')->nullable();
+            $table->timestamps();
             $table
             ->foreign('client_id')
             ->references('id')
@@ -31,9 +35,6 @@ class AddColumnToMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            //
-            $table->dropColumn('client_id');
-        });
+        Schema::dropIfExists('messages');
     }
 }

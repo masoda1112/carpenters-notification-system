@@ -17,7 +17,6 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('line_id');
-            $table->json('messages');
             $table->timestamps();
         });
     }
