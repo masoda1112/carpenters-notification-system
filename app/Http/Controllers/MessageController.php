@@ -8,6 +8,9 @@ use App\Models\Client;
 use App\Models\Carpenter;
 use App\Models\Template;
 use App\Http\Requests\MessageRequest;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class MessageController extends Controller
 {
@@ -118,5 +121,21 @@ class MessageController extends Controller
             $lastmessage->save();
         }
         return redirect('/home');
+    }
+
+    public function sendLine(){
+        // LINEBOTSDKの設定
+        $http_client = new CurlHTTPClient(config('services.line.channel_token'));
+        $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
+
+        // LINEユーザーID指定
+        $userId = "LINEユーザーID";
+
+        // メッセージ設定
+        $message = "こんにちは！";
+
+        // メッセージ送信
+        $textMessageBuilder = new TextMessageBuilder($message);
+        $response    = $bot->pushMessage($userId, $textMessageBuilder);
     }
 }
