@@ -9,9 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         @if(app('env') == 'production')
-            <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+            <link href="{{ secure_asset('style.css') }}" rel="stylesheet">
         @else
-            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+            <link href="{{ asset('style.css') }}" rel="stylesheet">
         @endif
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         {{-- @if(app('env') == 'production')
