@@ -32,7 +32,7 @@ class LineMessengerController extends Controller
 
             // ユーザーにメッセージを返す
             $reply=$bot->replyText($reply_token, $reply_message);
-            Log::debug('$findData="' .$findData. '"');
+            Log::debug('$findData="' .$inputs. '"');
 
             return 'ok';
         }
