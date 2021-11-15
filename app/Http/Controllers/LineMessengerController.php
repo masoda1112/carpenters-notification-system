@@ -35,5 +35,6 @@ class LineMessengerController extends Controller
 
             return 'ok';
         }
+        var_dump($inputs);
     }
 }
