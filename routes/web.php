@@ -76,7 +76,7 @@ Route::patch('/templates/{template}/update', [TemplateController::class,"update"
 
 Route::delete('/templates/{template}/destroy', [TemplateController::class,"destroy"])->name('template.destroy')->middleware(['auth']);
 
-Route::post('/line/webhook', [LineMessengerController::class,"webhook"]);
+Route::post('/line/webhook', [LineMessengerController::class,"webhook"])->name('line.webhook');
 
 Route::get('/line/message', [LineMessengerController::class,"message"]);
 
