@@ -7,7 +7,7 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot;
 // use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
-class LineMessengerControllers extends Controller
+class LineMessengerController extends Controller
 {
     //
     public function webhook(Request $request) {
@@ -35,6 +35,5 @@ class LineMessengerControllers extends Controller
 
             return 'ok';
         }
-        return 'ok';
     }
 }
