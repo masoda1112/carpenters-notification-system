@@ -18,22 +18,23 @@ class LineMessengerControllers extends Controller
         $message_type=$inputs['events'][0]['type'];
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
-        if($message_type=='message') {
+        // if($message_type=='message') {
 
-            // replyTokenを取得
-            $reply_token=$inputs['events'][0]['replyToken'];
+        //     // replyTokenを取得
+        //     $reply_token=$inputs['events'][0]['replyToken'];
 
-            // LINEBOTSDKの設定
-            $http_client = new CurlHTTPClient(config('services.line.channel_token'));
-            $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
+        //     // LINEBOTSDKの設定
+        //     $http_client = new CurlHTTPClient(config('services.line.channel_token'));
+        //     $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
-            // 送信するメッセージの設定
-            $reply_message='メッセージありがとうございます';
+        //     // 送信するメッセージの設定
+        //     $reply_message='メッセージありがとうございます';
 
-            // ユーザーにメッセージを返す
-            $reply=$bot->replyText($reply_token, $reply_message);
+        //     // ユーザーにメッセージを返す
+        //     $reply=$bot->replyText($reply_token, $reply_message);
 
-            return 'ok';
-        }
+        //     return 'ok';
+        // }
+        return 'ok';
     }
 }
