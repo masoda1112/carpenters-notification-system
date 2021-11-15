@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot;
+// use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 class LineMessengerControllers extends Controller
 {
