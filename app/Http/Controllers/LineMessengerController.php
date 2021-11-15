@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use Illuminate\Support\Facades\Log;
 
 class LineMessengerController extends Controller
 {
@@ -19,7 +20,6 @@ class LineMessengerController extends Controller
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         if($message_type=='message') {
-
             // replyTokenを取得
             $reply_token=$inputs['events'][0]['replyToken'];
 
@@ -32,9 +32,9 @@ class LineMessengerController extends Controller
 
             // ユーザーにメッセージを返す
             $reply=$bot->replyText($reply_token, $reply_message);
+            Log::debug('$findData="' .$findData. '"');
 
             return 'ok';
         }
-        var_dump($inputs);
     }
 }
