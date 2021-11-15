@@ -12,10 +12,10 @@ class LineMessengerControllers extends Controller
     //
     public function webhook(Request $request) {
         // LINEから送られた内容を$inputsに代入
-        $inputs=$request->all();
+        // $inputs=$request->all();
 
         // そこからtypeをとりだし、$message_typeに代入
-        $message_type=$inputs['events'][0]['type'];
+        // $message_type=$inputs['events'][0]['type'];
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         // if($message_type=='message') {
