@@ -75,4 +75,8 @@ Route::patch('/templates/{template}/update', [TemplateController::class,"update"
 
 Route::delete('/templates/{template}/destroy', [TemplateController::class,"destroy"])->name('template.destroy')->middleware(['auth']);
 
+Route::post('/line/webhook', 'LineMessengerController@webhook')->name('line.webhook');
+
+Route::get('/line/message', 'LineMessengerController@message');
+
 require __DIR__.'/auth.php';

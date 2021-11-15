@@ -48,19 +48,20 @@ class SendLine extends Command
         // Log::info( $message );
         // return Command::SUCCESS;
 
-
         // LINEBOTSDKの設定
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
         // LINEユーザーID指定
-        $userId = "masahiroodakura";
+        $userId = "1656616138";
 
         // メッセージ設定
         $message = "こんにちは！";
 
         // メッセージ送信
         $textMessageBuilder = new TextMessageBuilder($message);
-        $response    = $bot->pushMessage($userId, $textMessageBuilder);
+        $response = $bot->pushMessage($userId, $textMessageBuilder);
+        $this->info($response->getHTTPStatus());
+        $this->info($response->getRawBody());
     }
 }
