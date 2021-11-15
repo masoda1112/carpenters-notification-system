@@ -21,7 +21,7 @@ class LineMessengerController extends Controller
         if($message_type=='message') {
 
             // replyTokenを取得
-            $reply_token=$event->getReplyToken();
+            $reply_token=$inputs['events'][0]['replyToken'];
 
             // LINEBOTSDKの設定
             $http_client = new CurlHTTPClient(config('services.line.channel_token'));
@@ -31,7 +31,7 @@ class LineMessengerController extends Controller
             $reply_message='メッセージありがとうございます！これはサーバーから送られたメッセージです';
 
             // ユーザーにメッセージを返す
-            $reply=$bot->replyText($reply_token, "a");
+            $reply=$bot->replyText($reply_token, $reply_message);
 
             return 'ok';
         }
