@@ -58,7 +58,7 @@ class LineMessengerController extends Controller
     public function message() {
 
         // LINEBOTSDKの設定
-        $http_client = new CurlHTTPClient(env('LINE_CHANNEL_TOKEN')
+        $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
         // LINEユーザーID指定
