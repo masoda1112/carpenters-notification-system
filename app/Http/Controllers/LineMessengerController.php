@@ -27,11 +27,11 @@ class LineMessengerController extends Controller
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         if($hook_type=='message') {
 
-            // 送信するメッセージの設定
-            $reply_message=new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！これはサーバーから送られたメッセージです');
+            // // 送信するメッセージの設定
+            // $reply_message=new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！これはサーバーから送られたメッセージです');
 
-            // ユーザーにメッセージを返す
-            $reply=$bot->replyText($reply_token, $reply_message);
+            // // ユーザーにメッセージを返す
+            // $reply=$bot->replyText($reply_token, $reply_message);
             // Log::debug('$findData="' .$inputs. '"');
 
             // LINEのユーザーIDをuserIdに代入
@@ -42,7 +42,7 @@ class LineMessengerController extends Controller
             if($client==NULL) {
                 $client=new Client();
                 $client->line_id=$request['events'][0]['source']['userId'];
-                $client->name=$inputs['events'][0]['message']['text'];
+                $client->name=$inputs['events'][0]['replyToken'];
                 $client->save();
             }
             return 'ok';
