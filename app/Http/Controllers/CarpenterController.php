@@ -14,8 +14,8 @@ class CarpenterController extends Controller
         $test = "テスト";
         var_dump($test);
         var_dump(config('app.name'));
-        var_dump(env('LINE_CHANNEL_TOKEN'));
-        var_dump(env('LINE_MESSENGER_SECRET'));
+        var_dump(config('services.line.channel_token'));
+        var_dump(config('services.line.messenger_secret'));
         return view('carpenters')->with(['carpenters' => $carpenters]);
     }
 
