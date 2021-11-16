@@ -11,7 +11,10 @@ class CarpenterController extends Controller
     //
     public function index(){
         $carpenters = Carpenter::all();
+        $test = "テスト";
+        var_dump($test);
         var_dump(env('LINE_CHANNEL_TOKEN'));
+        var_dump(env('LINE_MESSENGER_SECRET'));
         return view('carpenters')->with(['carpenters' => $carpenters]);
     }
 
