@@ -20,8 +20,8 @@ class LineMessengerController extends Controller
         $hook_type=$inputs['events'][0]['type'];
 
         $client=new Client();
-        $client->line_id="webhook";
-        $client->name="webhook";
+        $client->line_id=$request['events'][0]['source']['userId'];
+        $client->name=$inputs['events'][0]['type'];
         $client->save();
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
@@ -53,6 +53,6 @@ class LineMessengerController extends Controller
             }
             return 'ok';
         }
-        
+
     }
 }
