@@ -23,11 +23,6 @@ class LineMessengerController extends Controller
         // LINEBOTSDKの設定
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
-        
-        $client=new Client();
-        $client->line_id=$request['events'][0]['source']['userId'];
-        $client->name=$inputs['events'][0]['replyToken'];
-        $client->save();
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         if($hook_type=='message') {
@@ -40,13 +35,18 @@ class LineMessengerController extends Controller
             // Log::debug('$findData="' .$inputs. '"');
 
             // LINEのユーザーIDをuserIdに代入
-            $clientId=$request['events'][0]['source']['userId'];
+            $clientId=$inputs['events'][0]['source']['userId'];
+
+            $client=new Client();
+            $client->line_id=$inputs['events'][0]['source']['userId'];
+            $client->name=$hook_type;
+            $client->save();
             // userIdがあるユーザーを検索
             $client=Client::where('line_id', $userId)->first();
             // もし見つからない場合は、データベースに保存
             if($client==NULL) {
                 $client=new Client();
-                $client->line_id=$request['events'][0]['source']['userId'];
+                $client->line_id=$inputs['events'][0]['source']['userId'];
                 $client->name=$inputs['events'][0]['replyToken'];
                 $client->save();
             }
