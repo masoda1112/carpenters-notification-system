@@ -37,7 +37,7 @@ class LineMessengerController extends Controller
                 $client=new Client();
                 // $client->line_id=$inputs['events'][0]['source']['userId'];
                 // $client->name=$inputs['events'][0]['message']['text'];
-                $client->line_id=config('services.line.channel_token');
+                $client->line_id=$clientId;
                 $client->name=$inputs['events'][0]['message']['text'];
                 $client->save();
 
