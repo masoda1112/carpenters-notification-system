@@ -5,7 +5,8 @@
         <a class="create-page-link" href="/carpenters/new">職人を追加する</a>
     </div>
     <div class="index-area">
-        <h1>職人一覧{{config('services.line.channel_token')}}{{env('POSTMARK_TOKEN')}}{{env('LINE_MESSENGER_SECRET')}}</h1>
+        <h1>職人一覧</h1>
+        <p>{{config('services.line.channel_token')}}{{env('POSTMARK_TOKEN')}}{{env('LINE_MESSENGER_SECRET')}}</p>
         <div class="index-contents">
             <table class="index-table">
                 <thead>
