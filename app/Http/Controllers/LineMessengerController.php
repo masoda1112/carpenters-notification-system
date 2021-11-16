@@ -61,6 +61,7 @@ class LineMessengerController extends Controller
         // 日付が今日のメッセージを取得
         $today = date("Y-m-d");
         $messages = Message::where('date',$today)->get();
+        var_dump($messages->id);
         foreach($messages as $message){
             $userId = $message->cliend_id;
             $lineMessage = new TextMessageBuilder($message->message);
