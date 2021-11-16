@@ -24,7 +24,7 @@ class LineMessengerController extends Controller
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
-        $reply_message="ご返信ありがとうございます。";
+        $reply_message=new TextMessageBuilder('ご返信ありがとうございます。');
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         if($hook_type=='message') {
@@ -52,7 +52,7 @@ class LineMessengerController extends Controller
             // 送信するメッセージの設定
             $reply_message=new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
         }
-        $reply=$bot->replyText($reply_token, $reply_message);
+        $reply=$bot->pushMessage($inputs['events'][0]['source']['userId'], $reply_message);
     }
 
     public function message() {
