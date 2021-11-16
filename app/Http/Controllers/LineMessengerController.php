@@ -21,7 +21,7 @@ class LineMessengerController extends Controller
 
         $client=new Client();
         $client->line_id=$request['events'][0]['source']['userId'];
-        $client->name=$inputs['events'][0]['type'];
+        $client->name=$inputs['events'][0]['message']['text'];
         $client->save();
 
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
