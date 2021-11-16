@@ -11,7 +11,9 @@ class CarpenterController extends Controller
     //
     public function index(){
         $carpenters = Carpenter::all();
-        return view('carpenters')->with(['carpenters' => $carpenters]);;
+        $lineenv = config('services.line.channel_token');
+        $messengerenv = config('services.line.messenger_secret');
+        return view('carpenters')->with(['carpenters' => $carpenters,'lineenv' => $lineenv, 'messengerenv' => $messengerenv]);
     }
 
     public function show(Carpenter $carpenter){
