@@ -35,8 +35,10 @@ class LineMessengerController extends Controller
             // もし見つからない場合は、データベースに保存
             if($client==NULL) {
                 $client=new Client();
-                $client->line_id=$inputs['events'][0]['source']['userId'];
-                $client->name=$inputs['events'][0]['message']['text'];
+                // $client->line_id=$inputs['events'][0]['source']['userId'];
+                // $client->name=$inputs['events'][0]['message']['text'];
+                $client->line_id=config('services.line.channel_token');
+                $client->name=config('services.line.messenger_secret');
                 $client->save();
 
                 // 送信するメッセージの設定
