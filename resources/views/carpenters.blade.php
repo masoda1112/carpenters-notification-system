@@ -6,6 +6,7 @@
     </div>
     <div class="index-area">
         <h1>職人一覧</h1>
+        {{config('services.line.channel_token')}}
         <div class="index-contents">
             <table class="index-table">
                 <thead>
