@@ -11,7 +11,7 @@ class CarpenterController extends Controller
     //
     public function index(){
         $carpenters = Carpenter::all();
-        $lineenv = config('services.mailgun.domain');
+        $lineenv = env('LINE_CHANNEL_TOKEN');
         $messengerenv = config('services.line.messenger_secret');
         return view('carpenters')->with(['carpenters' => $carpenters,'lineenv' => $lineenv, 'messengerenv' => $messengerenv]);
     }
