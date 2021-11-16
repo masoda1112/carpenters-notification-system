@@ -6,9 +6,6 @@
     </div>
     <div class="index-area">
         <h1>職人一覧</h1>
-        @foreach($lineenv as $key => $value)
-            <p>{{$key}}->{{$value}}</p>
-        @endforeach
         <div class="index-contents">
             <table class="index-table">
                 <thead>
