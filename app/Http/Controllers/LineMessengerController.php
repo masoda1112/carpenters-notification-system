@@ -24,16 +24,10 @@ class LineMessengerController extends Controller
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
+        $reply_message="";
+
         // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
         if($hook_type=='message') {
-
-            // // 送信するメッセージの設定
-            // $reply_message=new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！これはサーバーから送られたメッセージです');
-
-            // // ユーザーにメッセージを返す
-            // $reply=$bot->replyText($reply_token, $reply_message);
-            // Log::debug('$findData="' .$inputs. '"');
-
             // LINEのユーザーIDをuserIdに代入
             $clientId=$inputs['events'][0]['source']['userId'];
             $client=Client::where('line_id', $clientId)->first();
@@ -44,15 +38,18 @@ class LineMessengerController extends Controller
                 $client->line_id=$inputs['events'][0]['source']['userId'];
                 $client->name=$inputs['events'][0]['message']['text'];
                 $client->save();
+
+                // 送信するメッセージの設定
+                $reply_message=new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！これはサーバーから送られたメッセージです');
+            }else{
+                // 送信するメッセージの設定
+                $reply_message=new TextMessageBuilder('ご返信ありがとうございます。すでに登録されております。');
             }
             return 'ok';
         }else{
             // 送信するメッセージの設定
             $reply_message=new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
-
-            // ユーザーにメッセージを返す
-            $reply=$bot->replyText($reply_token, $reply_message);
         }
-
+        $reply=$bot->replyText($reply_token, $reply_message);
     }
 }
