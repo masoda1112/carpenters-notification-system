@@ -42,20 +42,17 @@ class LineMessengerController extends Controller
                 $client->save();
 
                 // 送信するメッセージの設定
-                $reply_message='ご返信ありがとうございます。登録が完了しました！これはサーバーから送られたメッセージです';
+                $reply_message=new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！');
             }else{
                 // 送信するメッセージの設定
-                $reply_message='ご返信ありがとうございます。すでに登録されております。';
+                $reply_message=new TextMessageBuilder('ご返信ありがとうございます。すでに登録されております。');
             }
             return 'ok';
         }else{
             // 送信するメッセージの設定
-            $reply_message='ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください';
+            $reply_message=new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
         }
         $reply=$bot->replyText($reply_token, $reply_message);
-        var_dump($reply_token);
-        var_dump($bot);
-        var_dump($reply_message);
     }
 
     public function message() {
