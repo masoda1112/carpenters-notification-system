@@ -37,17 +37,12 @@ class LineMessengerController extends Controller
             // LINEのユーザーIDをuserIdに代入
             $clientId=$inputs['events'][0]['source']['userId'];
             $client=Client::where('line_id', $clientId)->first();
-
-            // $client=new Client();
-            // $client->line_id=$inputs['events'][0]['source']['userId'];
-            // $client->name=$hook_type;
-            // $client->save();
             // userIdがあるユーザーを検索
             // もし見つからない場合は、データベースに保存
             if($client==NULL) {
                 $client=new Client();
                 $client->line_id=$inputs['events'][0]['source']['userId'];
-                $client->name=$inputs['events'][0]['replyToken'];
+                $client->name=$inputs['events'][0]['message']['text'];
                 $client->save();
             }
             return 'ok';
