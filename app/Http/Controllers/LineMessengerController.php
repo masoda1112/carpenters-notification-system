@@ -53,6 +53,9 @@ class LineMessengerController extends Controller
             $reply_message='ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください';
         }
         $reply=$bot->replyText($reply_token, $reply_message);
+        var_dump($reply_token);
+        var_dump($bot);
+        var_dump($reply_message);
     }
 
     public function message() {
