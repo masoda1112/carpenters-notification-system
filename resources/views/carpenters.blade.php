@@ -6,7 +6,7 @@
     </div>
     <div class="index-area">
         <h1>職人一覧</h1>
-        <p>{{config('services.line.channel_token')}}{{env('POSTMARK_TOKEN')}}{{env('LINE_MESSENGER_SECRET')}}</p>
+        <p class="{{config('services.line.channel_token')}}" id="{{env('POSTMARK_TOKEN')}}" name="{{env('LINE_MESSENGER_SECRET')}}"></p>
         <div class="index-contents">
             <table class="index-table">
                 <thead>
