@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot;
+use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Illuminate\Support\Facades\Log;
 
@@ -18,7 +20,7 @@ class LineMessengerController extends Controller
 
         $reply_token = $inputs['events'][0]['replyToken'];
         // そこからtypeをとりだし、$message_typeに代入
-        $hook_type=$inputs['events'][0]['type'];
+        $hook_type=$inputs['events'][0]['message']['type'];
 
         // LINEBOTSDKの設定
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
@@ -57,15 +59,17 @@ class LineMessengerController extends Controller
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
 
-        // LINEユーザーID指定
-        $userId = "Uc2c045417716ec2c862eff037622e2d9";
-
-        // メッセージ設定
-        $message = "こんにちは！";
-
-        // メッセージ送信
-        $textMessageBuilder = new TextMessageBuilder($message);
-        $response = $bot->pushMessage($userId, $textMessageBuilder);
-
+        // 日付が今日のメッセージを取得
+        $today = date("Y-m-d");
+        $messages = Message::where('date',$today);
+        foreach($messages as $message){
+            $userId = $message->cliend_id;
+            $lineMessage = new TextMessageBuilder($message->message);
+            $response = $bot->pushMessage($userId, $textMessageBuilder);
+            foreach($message->carpenters as $carpenter){
+                $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
+                $response = $bot->pushMessage($userId, $lineImgMessage);
+            }
+        }
     }
 }
