@@ -10,7 +10,6 @@ use LINE\LINEBot;
 use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 
 class LineMessengerController extends Controller
 {
@@ -61,7 +60,7 @@ class LineMessengerController extends Controller
 
         // 日付が今日のメッセージを取得
         $today = date("Y-m-d");
-        $messages = DB::table()->where('date',$today)->first();
+        $messages = Message::where('date',$today);
         var_dump($messages);
         // foreach($messages as $message){
         //     $userId = $message->cliend_id;
