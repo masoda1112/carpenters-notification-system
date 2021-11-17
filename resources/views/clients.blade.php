@@ -2,7 +2,7 @@
 @section('content')
 <div class="contents">
     <div class="create-area d-flex">
-        <a class="create-page-link" href="/clients/new">顧客を追加する</a>
+        {{-- <a class="create-page-link" href="/clients/new">顧客を追加する</a> --}}
     </div>
     <div class="index-area">
         <h1>顧客一覧</h1>
