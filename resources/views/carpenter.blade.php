@@ -37,7 +37,7 @@
                 </div>
                 <div class="input-item">
                     <p class="input-item-title"></p>
-                    <img src="{{ asset('storage/' . $carpenter->img) }}" />
+                    <img src="{{ secure_url('storage/' . $carpenter->img) }}" />
                 </div>
                 <div class="input-item">
                     <p class="input-item-title"></p>
