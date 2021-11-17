@@ -62,7 +62,7 @@ class LineMessengerController extends Controller
         $today = date("Y-m-d");
         $messages = Message::where('date', $today)->get();
         foreach($messages as $message){
-            $userId = $message->cliend->line_id;
+            $userId = $message->client->line_id;
             $lineMessage = new TextMessageBuilder($message->message);
             var_dump($userId);
             $response = $bot->pushMessage($userId, $lineMessage);
