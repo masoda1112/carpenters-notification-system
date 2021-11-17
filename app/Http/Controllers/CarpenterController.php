@@ -27,8 +27,8 @@ class CarpenterController extends Controller
         $carpenter = new Carpenter();
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
-        $image_path = $request->file('img')->store('public/');
-        $carpenter->img = basename($image_path);
+        // $image_path = $request->file('img')->store('public/');
+        $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));;
         $carpenter->role = $request->role;
         $carpenter->save();
         return redirect('/carpenters');
