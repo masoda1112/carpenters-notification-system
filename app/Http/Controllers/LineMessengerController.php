@@ -64,7 +64,7 @@ class LineMessengerController extends Controller
         foreach($messages as $message){
             $userId = $message->cliend_id;
             $lineMessage = new TextMessageBuilder($message->message);
-            $response = $bot->pushMessage($userId, $textMessageBuilder);
+            $response = $bot->pushMessage($userId, $lineMessage);
             // foreach($message->carpenters as $carpenter){
             //     $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
             //     $response = $bot->pushMessage($userId, $lineImgMessage);
