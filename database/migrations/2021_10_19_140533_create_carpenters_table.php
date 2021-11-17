@@ -21,7 +21,7 @@ class CreateCarpentersTable extends Migration
             $table->string('role');
             $table->unsignedBigInteger('message_id')->nullable();
             $table->timestamps();
-            
+
             $table
             ->foreign('message_id')
             ->references('id')
