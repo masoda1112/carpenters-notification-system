@@ -61,15 +61,14 @@ class LineMessengerController extends Controller
         // 日付が今日のメッセージを取得
         $today = date("Y-m-d");
         $messages = Message::where('date', $today)->get();
-        var_dump($messages[0]->message);
-        // foreach($messages as $message){
-        //     $userId = $message->cliend_id;
-        //     $lineMessage = new TextMessageBuilder($message->message);
-        //     $response = $bot->pushMessage($userId, $textMessageBuilder);
-        //     foreach($message->carpenters as $carpenter){
-        //         $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
-        //         $response = $bot->pushMessage($userId, $lineImgMessage);
-        //     }
-        // }
+        foreach($messages as $message){
+            $userId = $message->cliend_id;
+            $lineMessage = new TextMessageBuilder($message->message);
+            $response = $bot->pushMessage($userId, $textMessageBuilder);
+            foreach($message->carpenters as $carpenter){
+                $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
+                $response = $bot->pushMessage($userId, $lineImgMessage);
+            }
+        }
     }
 }
