@@ -66,10 +66,10 @@ class LineMessengerController extends Controller
             $lineMessage = new TextMessageBuilder($message->message);
             var_dump($userId);
             $response = $bot->pushMessage($userId, $lineMessage);
-            // foreach($message->carpenters as $carpenter){
-            //     $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
-            //     $response = $bot->pushMessage($userId, $lineImgMessage);
-            // }
+            foreach($message->carpenters as $carpenter){
+                $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
+                $response = $bot->pushMessage($userId, $lineImgMessage);
+            }
         }
     }
 }
