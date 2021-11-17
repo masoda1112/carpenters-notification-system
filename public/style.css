@@ -33,7 +33,9 @@ a{
 .delete-btn:hover{
     opacity: 0.6;
 }
-
+.over-flow-hidden{
+    overflow: hidden;
+}
 h1{
     font-size:30px !important;
 }
