@@ -62,9 +62,9 @@ class LineMessengerController extends Controller
         $today = date("Y-m-d");
         $messages = Message::where('date', $today)->get();
         foreach($messages as $message){
-            $userId = $message->cliend_id;
+            $userId = $message->cliend->line_id;
             $lineMessage = new TextMessageBuilder($message->message);
-            var_dump($message->cliend_id);
+            var_dump($userId);
             $response = $bot->pushMessage($userId, $lineMessage);
             // foreach($message->carpenters as $carpenter){
             //     $lineImgMessage = new ImageMessageBuilder($carpenter->img,$carpenter->img);
