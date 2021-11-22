@@ -36,6 +36,7 @@ class CarpenterController extends Controller
             'height'    => 500
         ]);
         $carpenter->img = $logoUrl;
+        $carpenter->cloudinary_public_id = $publicId;
         // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
         $carpenter->role = $request->role;
         $carpenter->save();
@@ -54,6 +55,7 @@ class CarpenterController extends Controller
                 'height'    => 500
             ]);
             $carpenter->img = $logoUrl;
+            $carpenter->cloudinary_public_id = $publicId;
         }
         $carpenter->role = $request->role;
         $carpenter->save();
@@ -61,7 +63,7 @@ class CarpenterController extends Controller
     }
 
     public function destroy(Carpenter $carpenter){
-        Cloudder::destroyImage($carpenter->img);
+        Cloudder::destroyImage($carpenter->cloudinary_public_id);
         $carpenter->delete();
         return redirect('/carpenters');
     }
