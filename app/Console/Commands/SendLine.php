@@ -61,8 +61,7 @@ class SendLine extends Command
                 $response = $bot->pushMessage($userId, $lineCarpenterMessage);
                 $response = $bot->pushMessage($userId, $lineImgMessage);
             }
-            $message->status = true;
-            $this->info( $message->status );
+            $message->status = 1;
             $message->save();
         }
         $tendaysAgo = date('Y-m-d', strtotime('-10 day'));
