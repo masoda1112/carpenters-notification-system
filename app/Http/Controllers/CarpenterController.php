@@ -27,7 +27,14 @@ class CarpenterController extends Controller
         $carpenter = new Carpenter();
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
-        $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        $image_path = $image->getRealPath();
+        Cloudder::upload($image_path, null);
+        $logoUrl = Cloudder::secureShow($publicId, [
+            'width'     => 200,
+            'height'    => 200
+        ]);
+        $carpenter->img = $logoUrl;
+        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
         $carpenter->role = $request->role;
         $carpenter->save();
         return redirect('/carpenters');
