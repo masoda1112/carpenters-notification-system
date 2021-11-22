@@ -32,7 +32,7 @@
                             <td>{{$message->client->name}}</td>
                             <td>
                                 <?php
-                                    if($message->client->status == 0){
+                                    if($message->client->status == 1){
                                         echo "済";
                                     }else{
                                         echo "未";
