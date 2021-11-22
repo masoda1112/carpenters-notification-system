@@ -62,7 +62,12 @@ class SendLine extends Command
                 $response = $bot->pushMessage($userId, $lineImgMessage);
             }
             $message->status = true;
+            $this->info( $message->status );
             $message->save();
+        }
+        $oldMessages = Message::where('date', $today - 10)->get();
+        foreach($oldMessages as $message){
+            $message->delete();
         }
     }
 }

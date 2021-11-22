@@ -21,7 +21,7 @@ class MessageController extends Controller
      */
     //
     public function index(){
-        $messages = Message::all();
+        $messages = Message::where('status', false)->first();
         return view('home')->with(['messages'=>$messages]);
     }
 
