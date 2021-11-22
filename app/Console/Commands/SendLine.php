@@ -53,7 +53,6 @@ class SendLine extends Command
         $messages = Message::where('date', $today)->get();
         foreach($messages as $message){
             $userId = $message->client->line_id;
-            $this->info( $userId );
             $lineMessage = new TextMessageBuilder($message->message);
             $response = $bot->pushMessage($userId, $lineMessage);
             foreach($message->carpenters as $carpenter){
