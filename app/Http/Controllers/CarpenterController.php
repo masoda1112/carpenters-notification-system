@@ -31,6 +31,7 @@ class CarpenterController extends Controller
         $image_path = $request->img->getRealPath();
         var_dump($image_path);
         Cloudder::upload($image_path, null);
+        var_dump($image_path);
         $logoUrl = Cloudder::secureShow($publicId, [
             'width'     => 200,
             'height'    => 200
