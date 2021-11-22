@@ -46,8 +46,14 @@ class CarpenterController extends Controller
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
         if($request->img != null){
-            $image_path = $request->file('img')->store('public/');
-            $carpenter->img = basename($image_path);
+            $image_path = $request->img->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 500,
+                'height'    => 500
+            ]);
+            $carpenter->img = $logoUrl;
         }
         $carpenter->role = $request->role;
         $carpenter->save();
@@ -55,6 +61,7 @@ class CarpenterController extends Controller
     }
 
     public function destroy(Carpenter $carpenter){
+        Cloudder::destroyImage($carpenter->img);
         $carpenter->delete();
         return redirect('/carpenters');
     }
