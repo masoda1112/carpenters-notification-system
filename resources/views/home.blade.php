@@ -21,7 +21,6 @@
                             <th class="id-th">id</th>
                             <th>日付</th>
                             <th>顧客</th>
-                            {{-- <th>状態</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -30,15 +29,6 @@
                             <td class="id-th"><a href="/messages/{{$message->id}}">{{$message->id}}</a></td>
                             <td>{{$message->date}}</td>
                             <td>{{$message->client->name}}</td>
-                            {{-- <td>
-                                <?php
-                                    // if($message->client->status == 1){
-                                    //     echo "済";
-                                    // }else{
-                                    //     echo "未";
-                                    // }
-                                ?>
-                            </td> --}}
                         </tr>
                         @empty
                         @endforelse
