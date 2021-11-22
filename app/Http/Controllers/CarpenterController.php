@@ -34,6 +34,9 @@ class CarpenterController extends Controller
             'height'    => 200
         ]);
         $carpenter->img = $logoUrl;
+        var_dump($image_path);
+        var_dump($logoUrl);
+        var_dump($carpenter->img);
         // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
         $carpenter->role = $request->role;
         $carpenter->save();
