@@ -65,7 +65,8 @@ class SendLine extends Command
             $this->info( $message->status );
             $message->save();
         }
-        $oldMessages = Message::where('date', $today - 10)->get();
+        $tendaysAgo = date('Y-m-d', strtotime('-10 day'));
+        $oldMessages = Message::where('date', $tendaysAgo)->get();
         foreach($oldMessages as $message){
             $message->delete();
         }
