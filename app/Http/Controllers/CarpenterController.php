@@ -26,7 +26,10 @@ class CarpenterController extends Controller
 
     public function create(CarpenterRequest $request){
         $carpenter = new Carpenter();
-        var_dump($request,$carpenter);
+        var_dump($request->name);
+        var_dump($request->profile);
+        var_dump($request->role);
+        var_dump($request->img->getRealPath());
         // $carpenter->name = $request->name;
         // $carpenter->profile = $request->profile;
         // $image_path = $request->img->getRealPath();
