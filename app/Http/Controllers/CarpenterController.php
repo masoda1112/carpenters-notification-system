@@ -38,12 +38,12 @@ class CarpenterController extends Controller
         ]);
         $carpenter->img = $logoUrl;
         $carpenter->cloudinary_public_id = $publicId;
-        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
         $carpenter->role = $request->role;
         var_dump($carpenter->name);
         var_dump($carpenter->profile);
         var_dump($carpenter->role);
-        var_dump($carpenter->img->getRealPath());
+        var_dump($carpenter->img);
         // $carpenter->save();
         // return redirect('/carpenters');
     }
