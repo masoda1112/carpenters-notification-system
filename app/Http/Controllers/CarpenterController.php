@@ -29,8 +29,9 @@ class CarpenterController extends Controller
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
         $image_path = $request->img->getRealPath();
+        // ↓で500エラーが起こる
         // Cloudder::upload($image_path, null);
-        // $publicId = Cloudder::getPublicId();
+        $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
         //     'width'     => 500,
         //     'height'    => 500
@@ -39,7 +40,7 @@ class CarpenterController extends Controller
         // $carpenter->cloudinary_public_id = $publicId;
         // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
         $carpenter->role = $request->role;
-        var_dump($carpenter->name,$carpenter->profile,$carpenter->role, $image_path);
+        var_dump($carpenter->name,$carpenter->profile,$carpenter->role, $image_path,$publicId);
         // $carpenter->save();
         // return redirect('/carpenters');
     }
