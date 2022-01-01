@@ -47,6 +47,7 @@ class CarpenterController extends Controller
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
         if($request->img != null){
+
             $image_path = $request->img->getRealPath();
             Cloudder::upload($image_path, null);
             $publicId = Cloudder::getPublicId();
