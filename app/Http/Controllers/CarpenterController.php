@@ -64,7 +64,7 @@ class CarpenterController extends Controller
     }
 
     public function destroy(Carpenter $carpenter){
-        // Cloudder::destroyImage($carpenter->cloudinary_public_id);
+        Cloudder::destroyImage($carpenter->cloudinary_public_id);
         $carpenter->delete();
         return redirect('/carpenters');
     }
