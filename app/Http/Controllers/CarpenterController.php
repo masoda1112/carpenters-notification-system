@@ -26,28 +26,28 @@ class CarpenterController extends Controller
 
     public function create(CarpenterRequest $request){
         $carpenter = new Carpenter();
-        $carpenter->name = $request->name;
-        $carpenter->profile = $request->profile;
-        $image_path = $request->img->getRealPath();
-        Cloudder::upload($image_path, null);
-        $publicId = Cloudder::getPublicId();
-        $logoUrl = Cloudder::secureShow($publicId, [
-            'width'     => 500,
-            'height'    => 500
-        ]);
-        $carpenter->img = $logoUrl;
-        $carpenter->cloudinary_public_id = $publicId;
-        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        $carpenter->role = $request->role;
-        $carpenter->save();
-        return redirect('/carpenters');
+        var_dump($request,$carpenter);
+        // $carpenter->name = $request->name;
+        // $carpenter->profile = $request->profile;
+        // $image_path = $request->img->getRealPath();
+        // Cloudder::upload($image_path, null);
+        // $publicId = Cloudder::getPublicId();
+        // $logoUrl = Cloudder::secureShow($publicId, [
+        //     'width'     => 500,
+        //     'height'    => 500
+        // ]);
+        // $carpenter->img = $logoUrl;
+        // $carpenter->cloudinary_public_id = $publicId;
+        // // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        // $carpenter->role = $request->role;
+        // $carpenter->save();
+        // return redirect('/carpenters');
     }
 
     public function update(CarpenterRequest $request, Carpenter $carpenter){
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
         if($request->img != null){
-
             $image_path = $request->img->getRealPath();
             Cloudder::upload($image_path, null);
             $publicId = Cloudder::getPublicId();
@@ -61,6 +61,11 @@ class CarpenterController extends Controller
         $carpenter->role = $request->role;
         $carpenter->save();
         return redirect('/carpenters');
+    }
+
+    // create、updateの共通部分をまとめる
+    public function createHelper(CarpenterRequest $request,Carpenter $carpenter){
+
     }
 
     public function destroy(Carpenter $carpenter){
