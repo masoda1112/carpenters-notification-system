@@ -32,16 +32,16 @@ class CarpenterController extends Controller
         // ↓で500エラーが起こる
         var_dump($request->img);
         var_dump($image_path);
-        // Cloudder::upload($image_path, null);
+        Cloudder::upload($image_path, null);
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
         //     'width'     => 500,
         //     'height'    => 500
         // ]);
-        $carpenter->img = $logoUrl;
-        $carpenter->cloudinary_public_id = $publicId;
+        // $carpenter->img = $logoUrl;
+        // $carpenter->cloudinary_public_id = $publicId;
         // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        $carpenter->role = $request->role;
+        // $carpenter->role = $request->role;
         // $carpenter->save();
         // return redirect('/carpenters');
     }
