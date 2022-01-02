@@ -23,7 +23,7 @@
                 </div>
                 <div class="input-item">
                     <p class="input-item-title">画像</p>
-                    <input class="no-border" type="file" name="img" value="追加" accept="image/jpeg, image/png">
+                    <input class="no-border" type="file" name="img" value="追加" accept="image/*">
                 </div>
                 <div class="input-item">
                     <p class="input-item-title"></p>
