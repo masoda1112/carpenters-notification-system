@@ -36,11 +36,11 @@ class CarpenterController extends Controller
         //     'width'     => 500,
         //     'height'    => 500
         // ]);
-        $carpenter->img = $logoUrl;
-        $carpenter->cloudinary_public_id = $publicId;
-        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        $carpenter->role = $request->role;
-        var_dump($carpenter->name,$carpenter->profile,$carpenter->role, $image_path,$publicId);
+        // $carpenter->img = $logoUrl;
+        // $carpenter->cloudinary_public_id = $publicId;
+        // // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        // $carpenter->role = $request->role;
+        // var_dump($carpenter->name,$carpenter->profile,$carpenter->role, $image_path,$publicId);
         // $carpenter->save();
         // return redirect('/carpenters');
     }
