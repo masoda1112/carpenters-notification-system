@@ -57,7 +57,7 @@ class SendLine extends Command
             $response = $bot->pushMessage($userId, $lineMessage);
             foreach($message->carpenters as $carpenter){
                 $lineImgMessage = new ImageMessageBuilder(secure_url($carpenter->img),secure_url($carpenter->img));
-                $messageBody = $carpenter->name.$carpenter->role.$carpenter->profile;
+                $messageBody = $carpenter->role."の".$carpenter->name."です。".$carpenter->profile;
                 $lineCarpenterMessage = new TextMessageBuilder($messageBody);
                 $response = $bot->pushMessage($userId, $lineCarpenterMessage);
                 $response = $bot->pushMessage($userId, $lineImgMessage);
