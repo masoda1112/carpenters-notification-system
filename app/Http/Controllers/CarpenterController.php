@@ -30,8 +30,8 @@ class CarpenterController extends Controller
         $carpenter->profile = $request->profile;
         $image_path = $request->img->getRealPath();
         // ↓で500エラーが起こる
-        var_dump($request->img);
-        var_dump($image_path);
+        // var_dump($request->img);
+        // var_dump($image_path);
         var_dump(Cloudder::upload($image_path, null));
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
