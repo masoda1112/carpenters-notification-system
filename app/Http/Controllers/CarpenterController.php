@@ -33,6 +33,7 @@ class CarpenterController extends Controller
         // var_dump($request->img);
         // var_dump($image_path);
         var_dump($request->img);
+        var_dump("pathここから");
         var_dump($image_path);
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
