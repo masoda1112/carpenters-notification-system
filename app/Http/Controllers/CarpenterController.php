@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Carpenter;
 use App\Http\Requests\CarpenterRequest;
-use JD\Cloudder\Facades\Cloudder;
+use Illuminate\Support\Facades\Storage;
 
 class CarpenterController extends Controller
 {
@@ -30,22 +30,19 @@ class CarpenterController extends Controller
         $carpenter->profile = $request->profile;
         $image_path = $request->img->getRealPath();
         // ↓で500エラーが起こる
-        // var_dump($request->img);
-        // var_dump($image_path);
-        var_dump($request->img);
-        var_dump("pathここから");
-        var_dump($image_path);
+        $path = Storage::disk('s3')->put('/carpenters-notification-system',$image_path, 'public');
+        // Cloudder::upload($image_path, null);
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
         //     'width'     => 500,
         //     'height'    => 500
         // ]);
-        // $carpenter->img = $logoUrl;
-        // $carpenter->cloudinary_public_id = $publicId;
-        // // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        // $carpenter->role = $request->role;
-        // $carpenter->save();
-        // return redirect('/carpenters');
+        $carpenter->img = $path;
+        $carpenter->cloudinary_public_id = $publicId;
+        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        $carpenter->role = $request->role;
+        $carpenter->save();
+        return redirect('/carpenters');
     }
 
     public function update(CarpenterRequest $request, Carpenter $carpenter){
