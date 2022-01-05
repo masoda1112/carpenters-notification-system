@@ -31,19 +31,21 @@ class CarpenterController extends Controller
         // $image_path = $request->img->getRealPath();
         $file = $params['img'];
         // ↓で500エラーが起こる
+        var_dump($file);
         $path = Storage::disk('s3')->put('/carpenters-notification-system',$file, 'public');
+        var_dump($path);
         // Cloudder::upload($image_path, null);
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
         //     'width'     => 500,
         //     'height'    => 500
         // ]);
-        $carpenter->img = $path;
-        $carpenter->cloudinary_public_id = $publicId;
-        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        $carpenter->role = $request->role;
-        $carpenter->save();
-        return redirect('/carpenters');
+        // $carpenter->img = $path;
+        // $carpenter->cloudinary_public_id = $publicId;
+        // // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
+        // $carpenter->role = $request->role;
+        // $carpenter->save();
+        // return redirect('/carpenters');
     }
 
     public function update(CarpenterRequest $request, Carpenter $carpenter){
