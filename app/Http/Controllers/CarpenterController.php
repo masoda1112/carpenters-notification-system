@@ -28,10 +28,10 @@ class CarpenterController extends Controller
         $carpenter = new Carpenter();
         $carpenter->name = $request->name;
         $carpenter->profile = $request->profile;
-        // $image_path = $request->img->getRealPath();
-        $file = $params['img'];
+        $image_path = $request->img->getRealPath();
+        // $file = $params['img'];
         // ↓で500エラーが起こる
-        var_dump($file);
+        var_dump($image_path);
         // $path = Storage::disk('s3')->put('/carpenters-notification-system',$file, 'public');
         // var_dump($path);
         // Cloudder::upload($image_path, null);
@@ -53,12 +53,12 @@ class CarpenterController extends Controller
         $carpenter->profile = $request->profile;
         if($request->img != null){
             $image_path = $request->img->getRealPath();
-            Cloudder::upload($image_path, null);
-            $publicId = Cloudder::getPublicId();
-            $logoUrl = Cloudder::secureShow($publicId, [
-                'width'     => 500,
-                'height'    => 500
-            ]);
+            // Cloudder::upload($image_path, null);
+            // $publicId = Cloudder::getPublicId();
+            // $logoUrl = Cloudder::secureShow($publicId, [
+            //     'width'     => 500,
+            //     'height'    => 500
+            // ]);
             $carpenter->img = $logoUrl;
             $carpenter->cloudinary_public_id = $publicId;
         }
@@ -73,7 +73,7 @@ class CarpenterController extends Controller
     }
 
     public function destroy(Carpenter $carpenter){
-        Cloudder::destroyImage($carpenter->cloudinary_public_id);
+        // Cloudder::destroyImage($carpenter->cloudinary_public_id);
         $carpenter->delete();
         return redirect('/carpenters');
     }
