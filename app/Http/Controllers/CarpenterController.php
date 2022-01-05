@@ -35,8 +35,8 @@ class CarpenterController extends Controller
         // ↓で500エラーが起こる
         // var_dump($image_path);
         var_dump($image);
-        $path = Storage::disk('s3')->put('/carpenters-notification-system',$image, 'public');
-        var_dump($image);
+        $path = Storage::disk('s3')->putFile('carpenters-notification-system', $image, 'public');
+        var_dump($path);
         // Cloudder::upload($image_path, null);
         // $publicId = Cloudder::getPublicId();
         // $logoUrl = Cloudder::secureShow($publicId, [
