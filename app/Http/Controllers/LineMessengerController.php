@@ -15,7 +15,7 @@ class LineMessengerController extends Controller
 {
     //
     public function webhook(Request $request) {
-        // LINEから送られた内容を$inputsに代入
+         // LINEから送られた内容を$inputsに代入
         $inputs = $request->all();
         $hook_type = $inputs['events'][0]['type'];
 
@@ -26,7 +26,7 @@ class LineMessengerController extends Controller
             // LINEBOTSDKの設定
             $http_client = new CurlHTTPClient(config('services.line.channel_token'));
             $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
-            // $reply_message = $this->buildReplyMessage($message_type);
+            // $reply_message = new TextMessageBuilder('ご返信ありがとうございます。');
             if($message_type == 'text'){
                 // LINEのユーザーIDをuserIdに代入
                 $clientId = $inputs['events'][0]['source']['userId'];
@@ -42,7 +42,7 @@ class LineMessengerController extends Controller
                     $reply_message = new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！');
                 }else{
                     // 送信するメッセージの設定
-                    $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
+                    // $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
                 }
             }else{
                 $reply_message = new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
