@@ -45,22 +45,22 @@ class CarpenterController extends Controller
     {
         $carpenter->name = $request->name;
         $carpenter->role = $request->role;
-        $this->postImage($request,$carpenter);
+        if($request->img != null){
+            $this->postImage($request,$carpenter);
+        }
         $carpenter->save();
     }
 
     private function postImage(CarpenterRequest $request,Carpenter $carpenter) :void
     {
-        if($request->img != null){
-            $image_path = $request->img->getRealPath();
-            Cloudder::upload($image_path, null);
-            $publicId = Cloudder::getPublicId();
-            $logoUrl = Cloudder::secureShow($publicId, [
-                'width'     => 500,
-                'height'    => 500
-            ]);
-            $carpenter->img = $logoUrl;
-            $carpenter->cloudinary_public_id = $publicId;
-        }
+        $image_path = $request->img->getRealPath();
+        Cloudder::upload($image_path, null);
+        $publicId = Cloudder::getPublicId();
+        $logoUrl = Cloudder::secureShow($publicId, [
+            'width'     => 500,
+            'height'    => 500
+        ]);
+        $carpenter->img = $logoUrl;
+        $carpenter->cloudinary_public_id = $publicId;
     }
 }
