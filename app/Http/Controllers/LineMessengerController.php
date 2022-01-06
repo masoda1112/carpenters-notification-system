@@ -47,33 +47,32 @@ class LineMessengerController extends Controller
             }else{
                 $reply_message = new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
             }
-            return $reply_message;
             $reply = $bot->replyMessage($reply_token, $reply_message);
             return 'ok';
         }
     }
 
-    private function buildReplyMessage($message_type){
-        if($message_type == 'text'){
-            // LINEのユーザーIDをuserIdに代入
-            $clientId = $inputs['events'][0]['source']['userId'];
-            $client = Client::where('line_id', $clientId)->first();
-            // userIdがあるユーザーを検索
-            // もし見つからない場合は、データベースに保存
-            if($client == NULL) {
-                $client = new Client();
-                $client->line_id = $clientId;
-                $client->name = $inputs['events'][0]['message']['text'];
-                $client->save();
-                // 送信するメッセージの設定
-                $reply_message = new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！');
-            }else{
-                // 送信するメッセージの設定
-                $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
-            }
-        }else{
-            $reply_message = new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
-        }
-        return $reply_message;
-    }
+    // private function buildReplyMessage($message_type){
+    //     if($message_type == 'text'){
+    //         // LINEのユーザーIDをuserIdに代入
+    //         $clientId = $inputs['events'][0]['source']['userId'];
+    //         $client = Client::where('line_id', $clientId)->first();
+    //         // userIdがあるユーザーを検索
+    //         // もし見つからない場合は、データベースに保存
+    //         if($client == NULL) {
+    //             $client = new Client();
+    //             $client->line_id = $clientId;
+    //             $client->name = $inputs['events'][0]['message']['text'];
+    //             $client->save();
+    //             // 送信するメッセージの設定
+    //             $reply_message = new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！');
+    //         }else{
+    //             // 送信するメッセージの設定
+    //             $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
+    //         }
+    //     }else{
+    //         $reply_message = new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
+    //     }
+    //     return $reply_message;
+    // }
 }
