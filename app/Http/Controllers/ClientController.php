@@ -25,21 +25,23 @@ class ClientController extends Controller
 
     public function create(ClientRequest $request){
         $client = new Client();
-        $client->name = $request->name;
-        $client->line_id = $request->line_id;
-        $client->save();
+        $this->createHelper($request,$client);
         return redirect('/clients');
     }
 
     public function update(ClientRequest $request, Client $client){
-        $client->name = $request->name;
-        $client->line_id = $request->line_id;
-        $client->save();
+        $this->createHelper($request,$client);
         return redirect('/clients');
     }
 
     public function destroy(Client $client){
         $client->delete();
         return redirect('/clients');
+    }
+
+    private function createHelper(ClientRequest $request, Client $client): void{
+        $client->name = $request->name;
+        $client->line_id = $request->line_id;
+        $client->save();
     }
 }

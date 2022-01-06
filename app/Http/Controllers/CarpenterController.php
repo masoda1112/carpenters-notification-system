@@ -26,9 +26,35 @@ class CarpenterController extends Controller
 
     public function create(CarpenterRequest $request){
         $carpenter = new Carpenter();
+        $this->postImage($request,$carpenter);
+        $this->createHelper($request,$carpenter);
+        return redirect('/carpenters');
+    }
+
+    public function update(CarpenterRequest $request, Carpenter $carpenter){
+        if($request->img != null){
+            $this->postImage($request,$carpenter);
+        }
+        $this->createHelper($request,$carpenter);
+        return redirect('/carpenters');
+    }
+
+    public function destroy(Carpenter $carpenter){
+        Cloudder::destroyImage($carpenter->cloudinary_public_id);
+        $carpenter->delete();
+        return redirect('/carpenters');
+    }
+
+    private function createHelper(CarpenterRequest $request,Carpenter $carpenter): void
+    {
         $carpenter->name = $request->name;
+        $carpenter->role = $request->role;
+        $carpenter->save();
+    }
+
+    private function postImage(CarpenterRequest $request,Carpenter $carpenter) :void
+    {
         $image_path = $request->img->getRealPath();
-        // ↓で500エラーが起こる
         Cloudder::upload($image_path, null);
         $publicId = Cloudder::getPublicId();
         $logoUrl = Cloudder::secureShow($publicId, [
@@ -37,38 +63,5 @@ class CarpenterController extends Controller
         ]);
         $carpenter->img = $logoUrl;
         $carpenter->cloudinary_public_id = $publicId;
-        // $carpenter->img = base64_encode(file_get_contents($request->img->getRealPath()));
-        $carpenter->role = $request->role;
-        $carpenter->save();
-        return redirect('/carpenters');
-    }
-
-    public function update(CarpenterRequest $request, Carpenter $carpenter){
-        $carpenter->name = $request->name;
-        if($request->img != null){
-            $image_path = $request->img->getRealPath();
-            Cloudder::upload($image_path, null);
-            $publicId = Cloudder::getPublicId();
-            $logoUrl = Cloudder::secureShow($publicId, [
-                'width'     => 500,
-                'height'    => 500
-            ]);
-            $carpenter->img = $logoUrl;
-            $carpenter->cloudinary_public_id = $publicId;
-        }
-        $carpenter->role = $request->role;
-        $carpenter->save();
-        return redirect('/carpenters');
-    }
-
-    // create、updateの共通部分をまとめる
-    public function createHelper(CarpenterRequest $request,Carpenter $carpenter){
-
-    }
-
-    public function destroy(Carpenter $carpenter){
-        Cloudder::destroyImage($carpenter->cloudinary_public_id);
-        $carpenter->delete();
-        return redirect('/carpenters');
     }
 }

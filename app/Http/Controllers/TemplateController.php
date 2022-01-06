@@ -25,22 +25,24 @@ class TemplateController extends Controller
 
     public function create(TemplateRequest $request){
         $template = new Template();
-        $template->title = $request->title;
-        $template->body = $request->body;
-        $template->save();
+        $this->createHelper($request,$template);
         return redirect('/templates');
     }
 
     public function update(TemplateRequest $request, Template $template){
-        $template->title = $request->title;
-        $template->body = $request->body;
-        $template->save();
+        $this->createHelper($request,$template);
         return redirect('/templates');
     }
 
     public function destroy(Template $template){
         $template->delete();
         return redirect('/templates');
+    }
+
+    private function createHelper(TemplateRequest $request, Template $template): void{
+        $template->title = $request->title;
+        $template->body = $request->body;
+        $template->save();
     }
 }
 
