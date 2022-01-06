@@ -17,6 +17,7 @@ class CreateCarpentersTable extends Migration
             $table->id();
             $table->string('name');
             $table->longText('img')->default(NULL)->nullable();
+            $table->text('cloudinary_public_id')->default(NULL)->nullable();
             $table->string('role');
             $table->unsignedBigInteger('message_id')->nullable();
             $table->timestamps();
