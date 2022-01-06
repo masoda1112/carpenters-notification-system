@@ -14,10 +14,6 @@
                     <input type="text" name="name">
                 </div>
                 <div class="input-item">
-                    <p class="input-item-title">紹介文</p>
-                    <input type="text" name="profile">
-                </div>
-                <div class="input-item">
                     <p class="input-item-title">職種</p>
                     <input type="text" name="role">
                 </div>

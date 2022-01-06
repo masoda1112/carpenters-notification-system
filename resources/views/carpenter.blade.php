@@ -20,10 +20,6 @@
                     <input type="text" name="name" value="{{$carpenter->name}}">
                 </div>
                 <div class="input-item">
-                    <p class="input-item-title">紹介文</p>
-                    <input type="text" name="profile" value="{{$carpenter->profile}}">
-                </div>
-                <div class="input-item">
                     <p class="input-item-title">職種</p>
                     <input type="text" name="role" value="{{$carpenter->role}}">
                 </div>

@@ -26,8 +26,8 @@ class CarpenterRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'profile'=> 'required',
-            'img'=> 'required',
+            // createとupdateで分けたい
+            // 'img'=> 'required',
             'role'=> 'required',
         ];
     }
@@ -35,8 +35,8 @@ class CarpenterRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => '名前を入力してください',
-            'profile.required'=> '紹介文を入力してください',
-            'img.required' => '画像を選択してください',
+            // createとupdateで分けたい
+            // 'img.required' => '画像を選択してください',
             'role.required'=> '職種を入力してください',
         ];
     }
