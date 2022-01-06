@@ -27,7 +27,7 @@
                     <p class="input-item-title">画像</p>
                     <div class="d-flex flex-column over-flow-hidden">
                         <label class="d-block over-flow-hidden" for="img">現在の使用している画像：{{$carpenter->img}}</label>
-                        <input class="no-border input-item-file" type="file" name="img">
+                        <input class="no-border input-item-file" type="file" name="img" accept="image/jpeg, image/png">
                     </div>
                     {{-- ここに画像表示予定 --}}
                 </div>
