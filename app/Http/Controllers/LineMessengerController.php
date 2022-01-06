@@ -42,7 +42,7 @@ class LineMessengerController extends Controller
                     $reply_message = new TextMessageBuilder('ご返信ありがとうございます。登録が完了しました！');
                 }else{
                     // 送信するメッセージの設定
-                    // $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
+                    $reply_message = new TextMessageBuilder('ご返信ありがとうございます。すでにご登録いただいております');
                 }
             }else{
                 $reply_message = new TextMessageBuilder('ご返信ありがとうございます。申し訳ございませんが、文章を用いてお名前をご返信ください');
