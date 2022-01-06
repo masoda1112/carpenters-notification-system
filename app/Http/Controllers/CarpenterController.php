@@ -53,7 +53,7 @@ class CarpenterController extends Controller
 
     private function postImage(CarpenterRequest $request,Carpenter $carpenter) :void
     {
-        $imgFile = new SplFileInfo($request->img);
+        $imgFile = new \SplFileObject($request->img);
         $image_path = $imgFile->getRealPath();
         Cloudder::upload($image_path, null);
         $publicId = Cloudder::getPublicId();
