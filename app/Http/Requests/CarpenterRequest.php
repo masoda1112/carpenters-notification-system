@@ -33,7 +33,7 @@ class CarpenterRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => '名前を入力してください',
-            'img.max:1024' => '1MB以下のファイルを選択してください',
+            'img.max' => '1MB以下のファイルを選択してください',
             'role.required'=> '職種を入力してください',
         ];
     }
