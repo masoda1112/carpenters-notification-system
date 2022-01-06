@@ -54,15 +54,14 @@ class CarpenterController extends Controller
     private function postImage(CarpenterRequest $request,Carpenter $carpenter) :void
     {
         $image_path = $request->img->getRealPath();
-        var_dump($image_path);
-        // Cloudder::upload($image_path, null);
-        // $publicId = Cloudder::getPublicId();
-        // // $logoUrl = Cloudder::secureShow($publicId, [
-        // //     'width'     => 500,
-        // //     'height'    => 500
-        // // ]);
-        // $logoUrl = Cloudder::secureShow($publicId);
-        // $carpenter->img = $logoUrl;
-        // $carpenter->cloudinary_public_id = $publicId;
+        Cloudder::upload($image_path, null);
+        $publicId = Cloudder::getPublicId();
+        $logoUrl = Cloudder::secureShow($publicId, [
+            'width'     => 500,
+            'height'    => 500
+        ]);
+        $logoUrl = Cloudder::secureShow($publicId);
+        $carpenter->img = $logoUrl;
+        $carpenter->cloudinary_public_id = $publicId;
     }
 }
