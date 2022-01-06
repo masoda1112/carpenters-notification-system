@@ -16,7 +16,7 @@ class CreateCarpentersTable extends Migration
         Schema::create('carpenters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('img')->default(NULL)->nullable()->change();
+            $table->longText('img')->default(NULL)->nullable();
             $table->string('role');
             $table->unsignedBigInteger('message_id')->nullable();
             $table->timestamps();
